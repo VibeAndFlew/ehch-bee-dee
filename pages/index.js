@@ -89,6 +89,10 @@ export default function Home() {
           </div>
           <input id="test" type="text" data-min="0" name="date" size="15" readonly>
           <input id="formatted-date" type="text" name="formatted-date" size="15" readonly>
+          <button id="submit-button" type="button">Submit</button>
+          <p id="birthday-message" style="display: none;">
+            Happy Birthday, Taiya! 🎉❤️
+          </p>
         </div>
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
         <script type="text/javascript">
@@ -168,6 +172,13 @@ export default function Home() {
                   var formattedDate = sliderDate.getDate() + '/' + (sliderDate.getMonth() + 1) + '/' + sliderDate.getFullYear();
                   $('#formatted-date').val(formattedDate);
                 }
+                $('#submit-button').click(function() {
+                  var enteredDate = $('#formatted-date').val();
+                  if (enteredDate === '14/10/1998') {
+                    $('#birthday-message').show();
+                  } else {
+                    $('#birthday-message').hide();
+                  }
             });
           })();
         </script>
