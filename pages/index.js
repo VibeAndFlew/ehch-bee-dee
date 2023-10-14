@@ -13,10 +13,10 @@ export default function Home() {
       <main>
         <Header title="Welcome to my app!" />
         <p className="description">
-          Happy Birthday, Taiya! 🎉❤️ Get started by editing hehe <code>pages/index.js</code>
+          Hello to the most amazing person in my life. Here is to you 🥂
         </p>
 
-        <h2>Interactive Date Selector</h2>
+        <h2>Select your birthdate Please! </h2>
         <iframe
   width="400" // Increased width to 400
   height="400" // Increased height to 400
@@ -91,7 +91,7 @@ export default function Home() {
           <input id="formatted-date" type="text" name="formatted-date" size="15" readonly>
           <button id="submit-button" type="button">Submit</button>
           <p id="birthday-message" style="display: none;">
-            Happy Birthday, Taiya! 🎉❤️
+            Happy Birthday and love you a tonnnnnn, Taiya! 🎉❤️
           </p>
         </div>
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
