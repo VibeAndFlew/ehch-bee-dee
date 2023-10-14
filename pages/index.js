@@ -1,5 +1,5 @@
 // pages/index.js
-
+import Head from 'next/head';
 import { useState, useEffect } from 'react';
 
 export default function Home() {
