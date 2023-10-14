@@ -1,27 +1,18 @@
-import Head from 'next/head'
-import Header from '@components/Header'
-import Footer from '@components/Footer'
-import { useState } from 'react';
+import React, { useState } from 'react';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import DatePicker from '../components/DatePicker';
 
 export default function Home() {
   const [guess, setGuess] = useState('');
-  const [targetNumber, setTargetNumber] = useState(generateRandomNumber());
+  const [birthdate, setBirthdate] = useState('2000-01-01'); // The target birthdate
   const [message, setMessage] = useState('');
 
-  function generateRandomNumber() {
-    return Math.floor(Math.random() * 100) + 1;
-  }
-
   function handleGuess() {
-    const userGuess = parseInt(guess);
-
-    if (userGuess === targetNumber) {
-      setMessage('Congratulations! You guessed the number!');
-      setTargetNumber(generateRandomNumber());
-    } else if (userGuess < targetNumber) {
-      setMessage('Try a higher number.');
+    if (guess === birthdate) {
+      setMessage('Congratulations! You guessed the birthdate! 🎉');
     } else {
-      setMessage('Try a lower number.');
+      setMessage('Nope, try again! 😄');
     }
   }
 
@@ -38,18 +29,30 @@ export default function Home() {
           Happy Birthday, Taiya! 🎉❤️ Get started by editing hehe <code>pages/index.js</code>
         </p>
 
-        <h2>Guess the Number Game</h2>
-        <p>Can you guess the random number between 1 and 100?</p>
+        <h2>Annoying Birthdate Guessing Game</h2>
+        <p>Can you guess the birthdate?</p>
+        <DatePicker />
         <input
-          type="number"
+          type="date"
           value={guess}
           onChange={(e) => setGuess(e.target.value)}
         />
         <button onClick={handleGuess}>Guess</button>
-        <p>{message}</p>
+        <p className={`animated-text ${guess === birthdate ? 'wiggle' : ''}`}>{message}</p>
       </main>
 
       <Footer />
+      <style jsx>{`
+        .wiggle {
+          animation: wiggle 0.5s ease infinite;
+        }
+
+        @keyframes wiggle {
+          0% { transform: rotate(-5deg); }
+          50% { transform: rotate(5deg); }
+          100% { transform: rotate(-5deg); }
+        }
+      `}</style>
     </div>
-  )
+  );
 }
