@@ -18,8 +18,8 @@ export default function Home() {
 
         <h2>Select your birthdate Please! </h2>
         <iframe
-  width="400" // Increased width to 400
-  height="400" // Increased height to 400
+  width="100%" // Set width to 100% for responsiveness
+  height="400"
   srcDoc={`
     <html xmlns="http://www.w3.org/1999/xhtml">
       <head>
@@ -32,26 +32,26 @@ export default function Home() {
           }
 
           #circle {
-            width: 150px;
-            height: 150px;
+            width: 80vw; /* Use viewport width units to make it responsive */
+            max-width: 300px; /* Set a maximum width to avoid it becoming too large */
+            height: 80vw; /* Use viewport width units to maintain aspect ratio */
+            max-height: 300px; /* Set a maximum height to maintain aspect ratio */
             border: 2px solid #666;
-            border-radius: 100%;
-            float: left;
-            margin-right: 40px;
+            border-radius: 50%; /* Use 50% border-radius for a perfect circle */
+            margin: 0 auto; /* Center the circle horizontally */
             position: relative;
           }
 
           #inner-circle {
             position: absolute;
-            width: 20px;
-            height: 20px;
+            width: 15px; /* Adjust size for small screens */
+            height: 15px; /* Adjust size for small screens */
             border: 1px solid #DD0;
             background-color: #DD0;
-            border-radius: 100%;
-            float: left;
+            border-radius: 50%;
             top: 50%;
             left: 50%;
-            margin: -10px 0px 0px -10px;
+            transform: translate(-50%, -50%);
           }
 
           #slider {
@@ -59,9 +59,7 @@ export default function Home() {
             height: 15px;
             width: 15px;
             background: #006;
-            left: 8px;
-            top: -8px;
-            border-radius: 100%;
+            border-radius: 50%;
             cursor: pointer;
           }
 
@@ -91,7 +89,7 @@ export default function Home() {
           <input id="formatted-date" type="text" name="formatted-date" size="15" readonly>
           <button id="submit-button" type="button">Submit</button>
           <p id="birthday-message" style="display: none;">
-            Happy Birthday and love you a tonnnnnn, Taiya! 🎉❤️
+            Happy Birthday, Taiya! 🎉❤️
           </p>
         </div>
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
@@ -187,6 +185,7 @@ export default function Home() {
     </html>
   `}
 ></iframe>
+
 
 
       </main>
