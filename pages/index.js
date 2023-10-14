@@ -5,7 +5,7 @@ import { useState } from 'react';
 
 export default function Home() {
   const [guess, setGuess] = useState('');
-  const [birthdate, setBirthdate] = useState('2000-01-01'); // The target birthdate
+  const [birthdate, setBirthdate] = useState('1998-14-10'); // The target birthdate
   const [message, setMessage] = useState('');
 
   function handleGuess() {
