@@ -18,8 +18,8 @@ export default function Home() {
 
         <h2>Interactive Date Selector</h2>
         <iframe
-  width="300"
-  height="300"
+  width="400" // Increased width to 400
+  height="400" // Increased height to 400
   srcDoc={`
     <html xmlns="http://www.w3.org/1999/xhtml">
       <head>
@@ -100,18 +100,18 @@ export default function Home() {
           (function () {
             var $container = $('#circle');
             var $slider = $('#slider');
-            var sliderW2 = $slider.width()/2;
-            var sliderH2 = $slider.height()/2;    
+            var sliderW2 = $slider.width() / 2;
+            var sliderH2 = $slider.height() / 2;
             var radius = 75;
-            var deg = 0;    
+            var deg = 0;
             var elP = $('#circle').offset();
-            var elPos = { x: elP.left, y: elP.top};
+            var elPos = { x: elP.left, y: elP.top };
             var X = 0, Y = 0;
             var mdown = false;
-            // Initializint the slider
+            // Initialize the slider
             // Ignoring leap years because I cba for this shitpost
             // Constant for relating angle change to change in time
-            var daysPerDegree = 365/360;
+            var daysPerDegree = 365 / 360;
             // Calculate the current day of the year and use this
             // to initialize the position of the slider
             // Stolen from SO: https://stackoverflow.com/questions/8619879/javascript-calculate-the-day-of-the-year-1-366
@@ -120,37 +120,37 @@ export default function Home() {
             var diff = now - start;
             var oneDay = 1000 * 60 * 60 * 24;
             var startDay = Math.floor(diff / oneDay);
-      
+
             var startAngle = startDay / daysPerDegree;
-            X = Math.round(radius* Math.sin(startAngle*Math.PI/180));    
-            Y = Math.round(radius*  -Math.cos(startAngle*Math.PI/180));
-            $slider.css({ left: X+radius-sliderW2, top: Y+radius-sliderH2 })
+            X = Math.round(radius * Math.sin(startAngle * Math.PI / 180));
+            Y = Math.round(radius * -Math.cos(startAngle * Math.PI / 180));
+            $slider.css({ left: X + radius - sliderW2, top: Y + radius - sliderH2 });
             var sliderDate = new Date();
             // Track the previous slider angle. This will be needed when changing
             // years to decide whether to go up or down
             var lastAngle = startAngle;
             var currYear = sliderDate.getFullYear();
-      
+
             $('#circle')
-            .mousedown(function (e) { mdown = true; })
-            .mouseup(function (e) { mdown = false; })
-            .mousemove(function (e) {
+              .mousedown(function (e) { mdown = true; })
+              .mouseup(function (e) { mdown = false; })
+              .mousemove(function (e) {
                 if (mdown) {
-                   var mPos = {x: e.clientX-elPos.x, y: e.clientY-elPos.y};
-                   var atan = Math.atan2(mPos.x-radius, mPos.y-radius);
-                   deg = -atan/(Math.PI/180) + 180; // final (0-360 positive) degrees from mouse position 
-                    
-                   X = Math.round(radius* Math.sin(deg*Math.PI/180));    
-                   Y = Math.round(radius*  -Math.cos(deg*Math.PI/180));
-                   $slider.css({ left: X+radius-sliderW2, top: Y+radius-sliderH2 });              
-                   // AND FINALLY apply exact degrees to ball rotation
-                   $slider.css({ WebkitTransform: 'rotate(' + deg + 'deg)'});
-                   $slider.css({ '-moz-transform': 'rotate(' + deg + 'deg)'});
-    
+                  var mPos = { x: e.clientX - elPos.x, y: e.clientY - elPos.y };
+                  var atan = Math.atan2(mPos.x - radius, mPos.y - radius);
+                  deg = -atan / (Math.PI / 180) + 180; // final (0-360 positive) degrees from mouse position
+
+                  X = Math.round(radius * Math.sin(deg * Math.PI / 180));
+                  Y = Math.round(radius * -Math.cos(deg * Math.PI / 180));
+                  $slider.css({ left: X + radius - sliderW2, top: Y + radius - sliderH2 });
+                  // AND FINALLY apply exact degrees to ball rotation
+                  $slider.css({ WebkitTransform: 'rotate(' + deg + 'deg)' });
+                  $slider.css({ '-moz-transform': 'rotate(' + deg + 'deg)' });
+
                   // Compute the difference with the start angle and apply the change in days
                   var angleChange = startAngle - deg;
                   var dayChange = daysPerDegree * angleChange;
-                  // Slight hack to set the day of year directly
+                  // Slight hack to set the day of the year directly
                   sliderDate.setMonth(0);
                   sliderDate.setDate(startDay + dayChange);
                   // If we have crossed the 0 degree boundary, change the year
@@ -172,20 +172,22 @@ export default function Home() {
                   var formattedDate = sliderDate.getDate() + '/' + (sliderDate.getMonth() + 1) + '/' + sliderDate.getFullYear();
                   $('#formatted-date').val(formattedDate);
                 }
-                $('#submit-button').click(function() {
+                $('#submit-button').click(function () {
                   var enteredDate = $('#formatted-date').val();
                   if (enteredDate === '14/10/1998') {
                     $('#birthday-message').show();
                   } else {
                     $('#birthday-message').hide();
                   }
-            });
+                });
+              });
           })();
         </script>
       </body>
     </html>
   `}
 ></iframe>
+
 
       </main>
 
